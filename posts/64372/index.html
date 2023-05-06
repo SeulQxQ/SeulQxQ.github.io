@@ -18,24 +18,24 @@
   <meta name="author" content="SeulQxQ">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1.视图变换 Viewing Transformation视图变换的目的是将三维空间中的点$(x, y, z)$(在世界坐标系中)映射到平面图像中(二维坐标系)，以像素为基本表示单位。类似通过相机拍照得到一张相片。视图变换主要包括三个步骤：   相机变换(camera&#x2F;view transformation) 投影变换(projection transformation) 视口变换(vi">
+    <meta name="description" content="1.视图变换 Viewing Transformation 视图变换的目的是将三维空间中的点\((x, y, z)\)(在世界坐标系中)映射到平面图像中(二维坐标系)，以像素为基本表示单位。类似通过相机拍照得到一张相片。视图变换主要包括三个步骤：   相机变换(camera&#x2F;view transformation) 投影变换(projection transformation) 视">
 <meta property="og:type" content="article">
 <meta property="og:title" content="视图变换 Viewing transformation">
 <meta property="og:url" content="http://seulqxq.top/posts/64372/index.html">
 <meta property="og:site_name" content="Seul">
-<meta property="og:description" content="1.视图变换 Viewing Transformation视图变换的目的是将三维空间中的点$(x, y, z)$(在世界坐标系中)映射到平面图像中(二维坐标系)，以像素为基本表示单位。类似通过相机拍照得到一张相片。视图变换主要包括三个步骤：   相机变换(camera&#x2F;view transformation) 投影变换(projection transformation) 视口变换(vi">
+<meta property="og:description" content="1.视图变换 Viewing Transformation 视图变换的目的是将三维空间中的点\((x, y, z)\)(在世界坐标系中)映射到平面图像中(二维坐标系)，以像素为基本表示单位。类似通过相机拍照得到一张相片。视图变换主要包括三个步骤：   相机变换(camera&#x2F;view transformation) 投影变换(projection transformation) 视">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://seulqxq.top/posts/undefined/1.jpg">
-<meta property="og:image" content="http://seulqxq.top/posts/undefined/3.jpg">
-<meta property="og:image" content="http://seulqxq.top/posts/undefined/4.png">
-<meta property="og:image" content="http://seulqxq.top/posts/undefined/2.jpg">
+<meta property="og:image" content="http://seulqxq.top/posts/64372/1.jpg">
+<meta property="og:image" content="http://seulqxq.top/posts/64372/3.jpg">
+<meta property="og:image" content="http://seulqxq.top/posts/64372/4.png">
+<meta property="og:image" content="http://seulqxq.top/posts/64372/2.jpg">
 <meta property="article:published_time" content="2023-05-04T09:43:05.000Z">
-<meta property="article:modified_time" content="2023-05-06T14:09:25.780Z">
+<meta property="article:modified_time" content="2023-05-06T14:09:56.857Z">
 <meta property="article:author" content="SeulQxQ">
 <meta property="article:tag" content="NeRF">
 <meta property="article:tag" content="图形学">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://seulqxq.top/posts/undefined/1.jpg">
+<meta name="twitter:image" content="http://seulqxq.top/posts/64372/1.jpg">
   
   
   
@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.6k 字
+          4.3k 字
         
       </span>
     
@@ -245,7 +245,7 @@
         
         
         
-          39 分钟
+          37 分钟
         
       </span>
     
@@ -292,53 +292,216 @@
             
               <div class="markdown-body">
                 
-                <h3 id="1-视图变换-Viewing-Transformation"><a href="#1-视图变换-Viewing-Transformation" class="headerlink" title="1.视图变换 Viewing Transformation"></a>1.视图变换 Viewing Transformation</h3><p>视图变换的目的是将三维空间中的点$(x, y, z)$(在世界坐标系中)映射到平面图像中(二维坐标系)，以像素为基本表示单位。类似通过相机拍照得到一张相片。视图变换主要包括三个步骤：</p>
+                <h3 id="视图变换-viewing-transformation">1.视图变换 Viewing
+Transformation</h3>
+<p>视图变换的目的是将三维空间中的点<span class="math inline">\((x, y,
+z)\)</span>(在世界坐标系中)映射到平面图像中(二维坐标系)，以像素为基本表示单位。类似通过相机拍照得到一张相片。视图变换主要包括三个步骤：</p>
 <blockquote>
 <ul>
-<li>相机变换(camera&#x2F;view transformation)</li>
+<li>相机变换(camera/view transformation)</li>
 <li>投影变换(projection transformation)</li>
 <li>视口变换(viewport transformation)</li>
 </ul>
 </blockquote>
-<h3 id="2-相机变换-Camera-Transformation"><a href="#2-相机变换-Camera-Transformation" class="headerlink" title="2.相机变换 Camera Transformation"></a>2.相机变换 Camera Transformation</h3><img src="/posts/undefined/1.jpg" srcset="/img/loading.gif" lazyload class="" title="相机坐标系移动">
-
+<h3 id="相机变换-camera-transformation">2.相机变换 Camera
+Transformation</h3>
+<img src="/posts/64372/1.jpg" srcset="/img/loading.gif" lazyload class="" title="相机坐标系移动">
 <p>相机变换的目的是得到所有可是物体与相机的相对位置，通常包括平移、旋转、缩放。</p>
-<p>规定相机拍摄方向朝向-Z，相机的位置位于e，相机的正上方用向量t来表示，相机的朝向用g表示，$\overrightarrow{e}&#x3D;(x_e, y_e, z_e)$。首先将相机点平移至世界坐标原点，平移矩阵为：<br>$$<br>T_{\text {view }}&#x3D;\left[\begin{array}{cccc}<br>1 &amp; 0 &amp; 0 &amp; -x_{e} \<br>0 &amp; 1 &amp; 0 &amp; -y_{e} \<br>0 &amp; 0 &amp; 1 &amp; -z_{e} \<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right]<br>$$<br>然后，对相机坐标进行旋转变换，使其与世界坐标系重合。需要将相机朝向g旋转到-Z轴上，t旋转到Y轴上，再通过g叉乘t的方向旋转到X。然而，这个旋转对应的旋转矩阵并不容易写出，但是如果将Z旋转到-g，将Y旋转到t，将X旋转到g叉积t的方向，直接取旋转矩阵的逆矩阵$R^{-1}&#x3D;(u,v,w)$即可<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="[旋转矩阵(Rotate Matrix)的性质分析](https://www.cnblogs.com/caster99/p/4703033.html)">[1]</span></a></sup>，其中$u&#x3D;\hat{g} \times \hat{t},v&#x3D;\hat{t},w &#x3D; -\hat{g}$，因此旋转矩阵的逆矩阵和旋转矩阵可以写成：<br>$$<br>R_{\text {view }}^{-1}&#x3D;\left[\begin{array}{cccc}<br>x_{\hat{g} \times \hat{t}} &amp; x_{t} &amp; x_{-g} &amp; 0 \<br>y_{\hat{g} \times \hat{t}} &amp; y_{t} &amp; y_{-g} &amp; 0 \<br>z_{\hat{g} \times \hat{t}} &amp; z_{t} &amp; z_{-g} &amp; 0 \<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right]<br>\quad \Rightarrow  \quad<br>R_{\text {view }}&#x3D;\left[\begin{array}{cccc}<br>x_{\hat{g} \times \hat{t}} &amp; y_{\hat{g} \times \hat{t}}  &amp; z_{\hat{g} \times \hat{t}}  &amp; 0 \<br>x_{t} &amp; y_{t} &amp; z_{t} &amp; 0 \<br> x_{-g} &amp;  y_{-g} &amp; z_{-g} &amp; 0 \<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right]<br>$$<br>所以最终的相机变换矩阵为：$M_{\text {view }}&#x3D;R_{\text {view }}T_{\text {view }}$。</p>
+<p>规定相机拍摄方向朝向-Z，相机的位置位于e，相机的正上方用向量t来表示，相机的朝向用g表示，<span
+class="math inline">\(\overrightarrow{e}=(x_e, y_e,
+z_e)\)</span>。首先将相机点平移至世界坐标原点，平移矩阵为： <span
+class="math display">\[
+T_{\text {view }}=\left[\begin{array}{cccc}
+1 &amp; 0 &amp; 0 &amp; -x_{e} \\
+0 &amp; 1 &amp; 0 &amp; -y_{e} \\
+0 &amp; 0 &amp; 1 &amp; -z_{e} \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{array}\right]
+\]</span>
+然后，对相机坐标进行旋转变换，使其与世界坐标系重合。需要将相机朝向g旋转到-Z轴上，t旋转到Y轴上，再通过g叉乘t的方向旋转到X。然而，这个旋转对应的旋转矩阵并不容易写出，但是如果将Z旋转到-g，将Y旋转到t，将X旋转到g叉积t的方向，直接取旋转矩阵的逆矩阵<span
+class="math inline">\(R^{-1}=(u,v,w)\)</span>即可<sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span
+class="hint--top hint--rounded"
+aria-label="[旋转矩阵(Rotate Matrix)的性质分析](https://www.cnblogs.com/caster99/p/4703033.html)">[1]</span></a></sup>，其中<span
+class="math inline">\(u=\hat{g} \times \hat{t},v=\hat{t},w =
+-\hat{g}\)</span>，因此旋转矩阵的逆矩阵和旋转矩阵可以写成： <span
+class="math display">\[
+R_{\text {view }}^{-1}=\left[\begin{array}{cccc}
+x_{\hat{g} \times \hat{t}} &amp; x_{t} &amp; x_{-g} &amp; 0 \\
+y_{\hat{g} \times \hat{t}} &amp; y_{t} &amp; y_{-g} &amp; 0 \\
+z_{\hat{g} \times \hat{t}} &amp; z_{t} &amp; z_{-g} &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{array}\right]
+\quad \Rightarrow  \quad
+R_{\text {view }}=\left[\begin{array}{cccc}
+x_{\hat{g} \times \hat{t}} &amp; y_{\hat{g} \times \hat{t}}  &amp;
+z_{\hat{g} \times \hat{t}}  &amp; 0 \\
+x_{t} &amp; y_{t} &amp; z_{t} &amp; 0 \\
+x_{-g} &amp;  y_{-g} &amp; z_{-g} &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{array}\right]
+\]</span> 所以最终的相机变换矩阵为：<span class="math inline">\(M_{\text
+{view }}=R_{\text {view }}T_{\text {view }}\)</span>。</p>
 <blockquote>
-<p>PS: 从世界坐标系变换到相机坐标系属于刚体变换：即物体不会发生形变，只需要进行旋转和平移。</p>
+<p>PS:
+从世界坐标系变换到相机坐标系属于刚体变换：即物体不会发生形变，只需要进行旋转和平移。</p>
 </blockquote>
-<h3 id="3-投影变换-Projection-Transformation"><a href="#3-投影变换-Projection-Transformation" class="headerlink" title="3.投影变换 Projection Transformation"></a>3.投影变换 Projection Transformation</h3><img src="/posts/undefined/3.jpg" srcset="/img/loading.gif" lazyload class="" title="正交投影">
-
-<p>投影变换的目的是将相机空间中的点映射到$[-1, 1]^3$的立方体上，并且相机$e&#x3D;0$的射线穿过里立方体中心。这样的立方体叫做规范视图体(Canonical View Volume)或者标准化设备坐标系(normalized device coordinates)。投影变换可以分为两个步骤进行：</p>
+<h3 id="投影变换-projection-transformation">3.投影变换 Projection
+Transformation</h3>
+<img src="/posts/64372/3.jpg" srcset="/img/loading.gif" lazyload class="" title="正交投影">
+<p>投影变换的目的是将相机空间中的点映射到<span
+class="math inline">\([-1, 1]^3\)</span>的立方体上，并且相机<span
+class="math inline">\(e=0\)</span>的射线穿过里立方体中心。这样的立方体叫做规范视图体(Canonical
+View Volume)或者标准化设备坐标系(normalized device
+coordinates)。投影变换可以分为两个步骤进行：</p>
 <blockquote>
 <ul>
 <li>正交投影(orthographic projection)</li>
 <li>透视投影(perspection projection)</li>
 </ul>
 </blockquote>
-<ol>
+<ol type="1">
 <li><p>透视投影</p>
 <p>透视投影就是最类似人眼所看东西的方式，遵循近大远小，通过投影到平面来进行解释。</p>
-<img src="/posts/undefined/4.png" srcset="/img/loading.gif" lazyload class="" title="透视投影">
-
-<h1 id="图中的原点代表视点，Z-n表示近平面-投影平面-，Z-z表示远平面，需要进行压缩。利用相似三角形可以计算出-y-‘-x3D-frac-n-z-y-x-‘-x3D-frac-n-z-x-，假定透视矩阵为P，我们计算透视投影后的齐次坐标。-P-left-begin-array-c-x-y-z-1-end-array-right"><a href="#图中的原点代表视点，Z-n表示近平面-投影平面-，Z-z表示远平面，需要进行压缩。利用相似三角形可以计算出-y-‘-x3D-frac-n-z-y-x-‘-x3D-frac-n-z-x-，假定透视矩阵为P，我们计算透视投影后的齐次坐标。-P-left-begin-array-c-x-y-z-1-end-array-right" class="headerlink" title="图中的原点代表视点，Z=-n表示近平面(投影平面)，Z=-z表示远平面，需要进行压缩。利用相似三角形可以计算出$y^{‘}&#x3D;\frac{n}{z}y, x^{‘}&#x3D;\frac{n}{z}x$，假定透视矩阵为P，我们计算透视投影后的齐次坐标。$$P\left[\begin{array}{c}x  \y  \z  \1\end{array}\right]"></a>图中的原点代表视点，<code>Z=-n</code>表示近平面(投影平面)，<code>Z=-z</code>表示远平面，需要进行压缩。利用相似三角形可以计算出$y^{‘}&#x3D;\frac{n}{z}y, x^{‘}&#x3D;\frac{n}{z}x$，假定透视矩阵为P，我们计算透视投影后的齐次坐标。<br>$$<br>P\left[\begin{array}{c}<br>x  \<br>y  \<br>z  \<br>1<br>\end{array}\right]</h1><p>\left[\begin{array}{c}<br>nx  \<br>ny  \<br>?  \<br>z<br>\end{array}\right]<br>\quad \Rightarrow  \quad<br>P&#x3D;\left[\begin{array}{cccc}<br>n &amp; 0 &amp; 0 &amp; 0 \<br>0 &amp; n &amp; 0 &amp; 0 \<br>? &amp; ? &amp; ? &amp; ? \<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right]<br>$$<br>中间的<code>?</code>可以通过远平面<code>Z=-f</code>和近平面<code>Z=-n</code>的值来计算，当<code>Z=-f</code>时，前面的单独<code>?</code>为$f^2$，当<code>Z=-n</code>时，前面的单独<code>?</code>为$n^2$。假设第三行为$(0,0,A,B)$，分别带入<code>n</code>和<code>f</code>可以列出两个等式：<br>$$<br>\begin{array}<br>{}<br>A_n + B &#x3D; n^2 \<br>A_f + B &#x3D; f^2 \<br>\end{array}</p>
-<p>\quad \Rightarrow  \quad<br>\begin{array}<br>{}<br>A &#x3D; n+f \<br>B &#x3D; -nf \<br>\end{array}<br>$$<br>最后的透视投影的变换矩阵为：<br>$$<br>M_{persp \to -ortho} &#x3D; P&#x3D;\left[\begin{array}{cccc}n &amp; 0 &amp; 0 &amp; 0 \0 &amp; n &amp; 0 &amp; 0 \0 &amp; 0 &amp; n+f &amp; -nf \0 &amp; 0 &amp; 0 &amp; 1\end{array}\right]<br>$$<br>通过计算可知，远平面通过透视投影矩阵的变换后，该平面会沿着Z轴的反向移动，即远离近平面。</p>
-</li>
+<img src="/posts/64372/4.png" srcset="/img/loading.gif" lazyload class="" title="透视投影">
+<p>图中的原点代表视点，<code>Z=-n</code>表示近平面(投影平面)，<code>Z=-z</code>表示远平面，需要进行压缩。利用相似三角形可以计算出<span
+class="math inline">\(y^{&#39;}=\frac{n}{z}y,
+x^{&#39;}=\frac{n}{z}x\)</span>，假定透视矩阵为P，我们计算透视投影后的齐次坐标。
+<span class="math display">\[
+P\left[\begin{array}{c}
+x  \\
+y  \\
+z  \\
+1
+\end{array}\right]
+=
+\left[\begin{array}{c}
+nx  \\
+ny  \\
+?  \\
+z
+\end{array}\right]
+\quad \Rightarrow  \quad
+P=\left[\begin{array}{cccc}
+n &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; n &amp; 0 &amp; 0 \\
+? &amp; ? &amp; ? &amp; ? \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{array}\right]
+\]</span>
+中间的<code>?</code>可以通过远平面<code>Z=-f</code>和近平面<code>Z=-n</code>的值来计算，当<code>Z=-f</code>时，前面的单独<code>?</code>为<span
+class="math inline">\(f^2\)</span>，当<code>Z=-n</code>时，前面的单独<code>?</code>为<span
+class="math inline">\(n^2\)</span>。假设第三行为<span
+class="math inline">\((0,0,A,B)\)</span>，分别带入<code>n</code>和<code>f</code>可以列出两个等式：
+$$</p>
+<span class="math display">\[\begin{array}
+{}
+A_n + B = n^2 \\
+A_f + B = f^2 \\
+\end{array}\]</span>
+<p><span class="math display">\[
+最后的透视投影的变换矩阵为：
+\]</span> M_{persp -ortho} = P=$$
+通过计算可知，远平面通过透视投影矩阵的变换后，该平面会沿着Z轴的反向移动，即远离近平面。</p></li>
 <li><p>正交投影</p>
-<img src="/posts/undefined/2.jpg" srcset="/img/loading.gif" lazyload class="" title="正交投影">
-
-<p>正交投影变换坐标的相对位置都不会改变，所有光线都是平行传播，只需将物体全部转换到$[-1,1]^3$的立方体中，主要的操作有平移和旋转。</p>
-<h1 id="通过计算可以求得立方体的中心点为-x-0-y-0-z-0-，其中-x-0-x3D-frac-r-l-2-y-0-x3D-frac-t-b-2-z-0-x3D-frac-n-f-2-。因此平移矩阵可以表示为-T-x3D-left-begin-array-cccc-1-amp-0-amp-0-amp-frac-r-l-2-0-amp-1-amp-0-amp-frac-t-b-2-0-amp-0-amp-1-amp-frac-n-f-2-0-amp-0-amp-0-amp-1-end-array-right-接下来就需要求缩放矩阵，-1到1的间距为2，而物体在各个轴上的间距分别为-l-r-b-t-n-f-，因此，在各个轴方向的缩放因子可以表示为-S-x-x3D-frac-2-l-r-S-y-x3D-frac-2-b-t-S-z-x3D-frac-2-n-f-。所以缩放矩阵可以表示为：-S-x3D-left-begin-array-cccc-frac-2-l-r-amp-0-amp-0-amp-0-0-amp-frac-2-b-t-amp-0-amp-0-0-amp-0-amp-frac-2-n-f-amp-0-0-amp-0-amp-0-amp-1-end-array-right-计算完两个矩阵之后，可以知道最终的正交投影矩阵为两个矩阵的乘积-M-orth-x3D-S-times-T-M-orth-x3D-left-begin-array-cccc-frac-2-l-r-amp-0-amp-0-amp-0-0-amp-frac-2-b-t-amp-0-amp-0-0-amp-0-amp-frac-2-n-f-amp-0-0-amp-0-amp-0-amp-1-end-array-right-left-begin-array-cccc-1-amp-0-amp-0-amp-frac-r-l-2-0-amp-1-amp-0-amp-frac-t-b-2-0-amp-0-amp-1-amp-frac-n-f-2-0-amp-0-amp-0-amp-1-end-array-right"><a href="#通过计算可以求得立方体的中心点为-x-0-y-0-z-0-，其中-x-0-x3D-frac-r-l-2-y-0-x3D-frac-t-b-2-z-0-x3D-frac-n-f-2-。因此平移矩阵可以表示为-T-x3D-left-begin-array-cccc-1-amp-0-amp-0-amp-frac-r-l-2-0-amp-1-amp-0-amp-frac-t-b-2-0-amp-0-amp-1-amp-frac-n-f-2-0-amp-0-amp-0-amp-1-end-array-right-接下来就需要求缩放矩阵，-1到1的间距为2，而物体在各个轴上的间距分别为-l-r-b-t-n-f-，因此，在各个轴方向的缩放因子可以表示为-S-x-x3D-frac-2-l-r-S-y-x3D-frac-2-b-t-S-z-x3D-frac-2-n-f-。所以缩放矩阵可以表示为：-S-x3D-left-begin-array-cccc-frac-2-l-r-amp-0-amp-0-amp-0-0-amp-frac-2-b-t-amp-0-amp-0-0-amp-0-amp-frac-2-n-f-amp-0-0-amp-0-amp-0-amp-1-end-array-right-计算完两个矩阵之后，可以知道最终的正交投影矩阵为两个矩阵的乘积-M-orth-x3D-S-times-T-M-orth-x3D-left-begin-array-cccc-frac-2-l-r-amp-0-amp-0-amp-0-0-amp-frac-2-b-t-amp-0-amp-0-0-amp-0-amp-frac-2-n-f-amp-0-0-amp-0-amp-0-amp-1-end-array-right-left-begin-array-cccc-1-amp-0-amp-0-amp-frac-r-l-2-0-amp-1-amp-0-amp-frac-t-b-2-0-amp-0-amp-1-amp-frac-n-f-2-0-amp-0-amp-0-amp-1-end-array-right" class="headerlink" title="通过计算可以求得立方体的中心点为$(x_0, y_0, z_0)$，其中$x_0&#x3D;-\frac{r+l}{2}, y_0&#x3D;-\frac{t+b}{2},z_0&#x3D;-\frac{n+f}{2}$。因此平移矩阵可以表示为:$$T&#x3D;\left[\begin{array}{cccc}1 &amp; 0 &amp; 0 &amp; -\frac{r+l}{2} \0 &amp; 1 &amp; 0 &amp; -\frac{t+b}{2} \0 &amp; 0 &amp; 1 &amp; -\frac{n+f}{2} \0 &amp; 0 &amp; 0 &amp; 1\end{array}\right]$$接下来就需要求缩放矩阵，-1到1的间距为2，而物体在各个轴上的间距分别为$: |l-r|,|b-t|,|n-f|$，因此，在各个轴方向的缩放因子可以表示为$S_x&#x3D;\frac{2}{|l-r|}, S_y&#x3D;\frac{2}{|b-t|},S_z&#x3D;\frac{2}{|n-f|}$。所以缩放矩阵可以表示为：$$S&#x3D;\left[\begin{array}{cccc}\frac{2}{|l-r|} &amp; 0 &amp; 0 &amp; 0 \0 &amp; \frac{2}{|b-t|}&amp; 0 &amp; 0 \0 &amp; 0 &amp; \frac{2}{|n-f|} &amp; 0 \0 &amp; 0 &amp; 0 &amp; 1\end{array}\right]$$计算完两个矩阵之后，可以知道最终的正交投影矩阵为两个矩阵的乘积$M_{orth}&#x3D;S \times T$:$$M_{orth}&#x3D;\left[\begin{array}{cccc}\frac{2}{|l-r|} &amp; 0 &amp; 0 &amp; 0 \0 &amp; \frac{2}{|b-t|}&amp; 0 &amp; 0 \0 &amp; 0 &amp; \frac{2}{|n-f|} &amp; 0 \0 &amp; 0 &amp; 0 &amp; 1\end{array}\right]\left[\begin{array}{cccc}1 &amp; 0 &amp; 0 &amp; -\frac{r+l}{2} \0 &amp; 1 &amp; 0 &amp; -\frac{t+b}{2} \0 &amp; 0 &amp; 1 &amp; -\frac{n+f}{2} \0 &amp; 0 &amp; 0 &amp; 1\end{array}\right]"></a>通过计算可以求得立方体的中心点为$(x_0, y_0, z_0)$，其中$x_0&#x3D;-\frac{r+l}{2}, y_0&#x3D;-\frac{t+b}{2},z_0&#x3D;-\frac{n+f}{2}$。因此平移矩阵可以表示为:<br>$$<br>T&#x3D;\left[\begin{array}{cccc}<br>1 &amp; 0 &amp; 0 &amp; -\frac{r+l}{2} \<br>0 &amp; 1 &amp; 0 &amp; -\frac{t+b}{2} \<br>0 &amp; 0 &amp; 1 &amp; -\frac{n+f}{2} \<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right]<br>$$<br>接下来就需要求缩放矩阵，-1到1的间距为2，而物体在各个轴上的间距分别为$: |l-r|,|b-t|,|n-f|$，因此，在各个轴方向的缩放因子可以表示为$S_x&#x3D;\frac{2}{|l-r|}, S_y&#x3D;\frac{2}{|b-t|},S_z&#x3D;\frac{2}{|n-f|}$。所以缩放矩阵可以表示为：<br>$$<br>S&#x3D;\left[\begin{array}{cccc}<br>\frac{2}{|l-r|} &amp; 0 &amp; 0 &amp; 0 \<br>0 &amp; \frac{2}{|b-t|}&amp; 0 &amp; 0 \<br>0 &amp; 0 &amp; \frac{2}{|n-f|} &amp; 0 \<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right]<br>$$<br>计算完两个矩阵之后，可以知道最终的正交投影矩阵为两个矩阵的乘积$M_{orth}&#x3D;S \times T$:<br>$$<br>M_{orth}&#x3D;\left[\begin{array}{cccc}<br>\frac{2}{|l-r|} &amp; 0 &amp; 0 &amp; 0 \<br>0 &amp; \frac{2}{|b-t|}&amp; 0 &amp; 0 \<br>0 &amp; 0 &amp; \frac{2}{|n-f|} &amp; 0 \<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right]<br>\left[\begin{array}{cccc}<br>1 &amp; 0 &amp; 0 &amp; -\frac{r+l}{2} \<br>0 &amp; 1 &amp; 0 &amp; -\frac{t+b}{2} \<br>0 &amp; 0 &amp; 1 &amp; -\frac{n+f}{2} \<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right]</h1><p>\left[\begin{array}{cccc}<br>\frac{2}{|l-r|} &amp; 0 &amp; 0 &amp; -\frac{r+l}{2} \<br>0 &amp; \frac{2}{|b-t|}&amp; 0 &amp; -\frac{t+b}{2} \<br>0 &amp; 0 &amp; \frac{2}{|n-f|} &amp; -\frac{n+f}{2} \<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right]<br>$$<br>3.投影变换矩阵</p>
-<p>通过上述的两个矩阵的乘积可以得出最终的变换矩阵$M_{per} &#x3D; M_{orhto}M_{persp \to -ortho}$<br>$$<br>M_{per} &#x3D;<br>\left[\begin{array}{cccc}<br>\frac{2n}{|l-r|} &amp; 0 &amp; -\frac{l+r}{|l-r|} &amp; 0 \<br>0 &amp; \frac{2n}{|b-t|}&amp; -\frac{b+t}{b-t} &amp; 0 \<br>0 &amp; 0 &amp; \frac{n+f}{|n-f|} &amp; -\frac{2nf}{|n-f|} \<br>0 &amp; 0 &amp; 1 &amp; 0<br>\end{array}\right]<br>$$</p>
-<h3 id="4-视口变换"><a href="#4-视口变换" class="headerlink" title="4.视口变换"></a>4.视口变换</h3><p>经过上述变换，可以将任意三维空间中的物体投影到标准立方体上，但是之后还需要投影到$2 \times2$的二维平面(光栅图像)上进行显示，高度为H，宽度为W，单位为像素。所以，需要将标准立方体中的中的点，转换到屏幕上，所以还是需要先平移，再缩放，形式同正交矩阵：<br>$$<br>M_{viewport}&#x3D;\left[\begin{array}{cccc}<br>\frac{W}{2} &amp; 0 &amp; 0 &amp; \frac{W}{2} \<br>0 &amp; \frac{H}{2}&amp; 0 &amp; \frac{H}{2} \<br>0 &amp; 0 &amp; 1 &amp; 0 \<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{array}\right]<br>$$</p>
-</li>
+<img src="/posts/64372/2.jpg" srcset="/img/loading.gif" lazyload class="" title="正交投影">
+<p>正交投影变换坐标的相对位置都不会改变，所有光线都是平行传播，只需将物体全部转换到<span
+class="math inline">\([-1,1]^3\)</span>的立方体中，主要的操作有平移和旋转。</p>
+<p>通过计算可以求得立方体的中心点为<span class="math inline">\((x_0,
+y_0, z_0)\)</span>，其中<span class="math inline">\(x_0=-\frac{r+l}{2},
+y_0=-\frac{t+b}{2},z_0=-\frac{n+f}{2}\)</span>。因此平移矩阵可以表示为:
+<span class="math display">\[
+T=\left[\begin{array}{cccc}
+1 &amp; 0 &amp; 0 &amp; -\frac{r+l}{2} \\
+0 &amp; 1 &amp; 0 &amp; -\frac{t+b}{2} \\
+0 &amp; 0 &amp; 1 &amp; -\frac{n+f}{2} \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{array}\right]
+\]</span>
+接下来就需要求缩放矩阵，-1到1的间距为2，而物体在各个轴上的间距分别为<span
+class="math inline">\(\:
+|l-r|,|b-t|,|n-f|\)</span>，因此，在各个轴方向的缩放因子可以表示为<span
+class="math inline">\(S_x=\frac{2}{|l-r|},
+S_y=\frac{2}{|b-t|},S_z=\frac{2}{|n-f|}\)</span>。所以缩放矩阵可以表示为：
+<span class="math display">\[
+S=\left[\begin{array}{cccc}
+\frac{2}{|l-r|} &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; \frac{2}{|b-t|}&amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; \frac{2}{|n-f|} &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{array}\right]
+\]</span>
+计算完两个矩阵之后，可以知道最终的正交投影矩阵为两个矩阵的乘积<span
+class="math inline">\(M_{orth}=S \times T\)</span>: <span
+class="math display">\[
+M_{orth}=\left[\begin{array}{cccc}
+\frac{2}{|l-r|} &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; \frac{2}{|b-t|}&amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; \frac{2}{|n-f|} &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{array}\right]
+\left[\begin{array}{cccc}
+1 &amp; 0 &amp; 0 &amp; -\frac{r+l}{2} \\
+0 &amp; 1 &amp; 0 &amp; -\frac{t+b}{2} \\
+0 &amp; 0 &amp; 1 &amp; -\frac{n+f}{2} \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{array}\right]
+=
+\left[\begin{array}{cccc}
+\frac{2}{|l-r|} &amp; 0 &amp; 0 &amp; -\frac{r+l}{2} \\
+0 &amp; \frac{2}{|b-t|}&amp; 0 &amp; -\frac{t+b}{2} \\
+0 &amp; 0 &amp; \frac{2}{|n-f|} &amp; -\frac{n+f}{2} \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{array}\right]
+\]</span> 3.投影变换矩阵</p>
+<p>通过上述的两个矩阵的乘积可以得出最终的变换矩阵<span
+class="math inline">\(M_{per} = M_{orhto}M_{persp \to -ortho}\)</span>
+<span class="math display">\[
+M_{per} =
+\left[\begin{array}{cccc}
+\frac{2n}{|l-r|} &amp; 0 &amp; -\frac{l+r}{|l-r|} &amp; 0 \\
+0 &amp; \frac{2n}{|b-t|}&amp; -\frac{b+t}{b-t} &amp; 0 \\
+0 &amp; 0 &amp; \frac{n+f}{|n-f|} &amp; -\frac{2nf}{|n-f|} \\
+0 &amp; 0 &amp; 1 &amp; 0
+\end{array}\right]
+\]</span></p>
+<h3 id="视口变换">4.视口变换</h3>
+<p>经过上述变换，可以将任意三维空间中的物体投影到标准立方体上，但是之后还需要投影到<span
+class="math inline">\(2
+\times2\)</span>的二维平面(光栅图像)上进行显示，高度为H，宽度为W，单位为像素。所以，需要将标准立方体中的中的点，转换到屏幕上，所以还是需要先平移，再缩放，形式同正交矩阵：
+<span class="math display">\[
+M_{viewport}=\left[\begin{array}{cccc}
+\frac{W}{2} &amp; 0 &amp; 0 &amp; \frac{W}{2} \\
+0 &amp; \frac{H}{2}&amp; 0 &amp; \frac{H}{2} \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{array}\right]
+\]</span></p></li>
 </ol>
 <blockquote>
-<p>PS: NeRF中只需要进行投影变换。因为NeRF将相对于世界坐标的相机坐标点作为MLP的输入，它也没有使用视口变换，因为信息是从多层感知器(MLP)中隐式查询而不是从测量对象构建的。</p>
+<p>PS:
+NeRF中只需要进行投影变换。因为NeRF将相对于世界坐标的相机坐标点作为MLP的输入，它也没有使用视口变换，因为信息是从多层感知器(MLP)中隐式查询而不是从测量对象构建的。</p>
 </blockquote>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://www.cnblogs.com/caster99/p/4703033.html">旋转矩阵(Rotate Matrix)的性质分析</a>
-<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/144323332">计算机图形学基础变换矩阵总结(缩放，旋转，位移)</a>
-<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section>
+<h3 id="参考">参考</h3>
+<section class="footnotes">
+<div class="footnote-list">
+<ol>
+<li>
+<span id="fn:1" class="footnote-text"><span><a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/caster99/p/4703033.html">旋转矩阵(Rotate
+Matrix)的性质分析</a>
+<a href="#fnref:1" rev="footnote" class="footnote-backref">
+↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:2" class="footnote-text"><span><a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/144323332">计算机图形学基础变换矩阵总结(缩放，旋转，位移)</a>
+<a href="#fnref:2" rev="footnote" class="footnote-backref">
+↩︎</a></span></span>
+</li>
+</ol>
+</div>
+</section>
+
                 
               </div>
             
@@ -434,8 +597,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/721/" title="template">
-                        <span class="hidden-mobile">template</span>
+                      <a href="/posts/39849/" title="hello-blog">
+                        <span class="hidden-mobile">hello-blog</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
