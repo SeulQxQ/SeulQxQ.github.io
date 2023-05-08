@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://seulqxq.top/img/index/3.jpg">
 <meta property="article:published_time" content="2023-05-04T09:43:05.000Z">
-<meta property="article:modified_time" content="2023-05-07T13:10:24.573Z">
+<meta property="article:modified_time" content="2023-05-08T08:10:46.990Z">
 <meta property="article:author" content="SeulQxQ">
 <meta property="article:tag" content="图形学">
 <meta property="article:tag" content="NeRF">
@@ -422,14 +422,14 @@ T=\left[\begin{array}{cccc}
 \]</span>
 接下来就需要求缩放矩阵，-1到1的间距为2，而物体在各个轴上的间距分别为<span
 class="math inline">\(\:
-|l-r|,|b-t|,|n-f|\)</span>，因此，在各个轴方向的缩放因子可以表示为<span
-class="math inline">\(S_x=\frac{2}{|l-r|},
-S_y=\frac{2}{|b-t|},S_z=\frac{2}{|n-f|}\)</span>。所以缩放矩阵可以表示为：
+l-r,b-t,n-f\)</span>，因此，在各个轴方向的缩放因子可以表示为<span
+class="math inline">\(S_x=\frac{2}{l-r},
+S_y=\frac{2}{b-t},S_z=\frac{2}{n-f}\)</span>。所以缩放矩阵可以表示为：
 <span class="math display">\[
 S=\left[\begin{array}{cccc}
-\frac{2}{|l-r|} &amp; 0 &amp; 0 &amp; 0 \\
-0 &amp; \frac{2}{|b-t|}&amp; 0 &amp; 0 \\
-0 &amp; 0 &amp; \frac{2}{|n-f|} &amp; 0 \\
+\frac{2}{l-r} &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; \frac{2}{b-t}&amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; \frac{2}{n-f} &amp; 0 \\
 0 &amp; 0 &amp; 0 &amp; 1
 \end{array}\right]
 \]</span>
@@ -437,9 +437,9 @@ S=\left[\begin{array}{cccc}
 class="math inline">\(M_{orth}=S \times T\)</span>: <span
 class="math display">\[
 M_{orth}=\left[\begin{array}{cccc}
-\frac{2}{|l-r|} &amp; 0 &amp; 0 &amp; 0 \\
-0 &amp; \frac{2}{|b-t|}&amp; 0 &amp; 0 \\
-0 &amp; 0 &amp; \frac{2}{|n-f|} &amp; 0 \\
+\frac{2}{l-r} &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; \frac{2}{b-t}&amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; \frac{2}{n-f} &amp; 0 \\
 0 &amp; 0 &amp; 0 &amp; 1
 \end{array}\right]
 \left[\begin{array}{cccc}
@@ -450,9 +450,9 @@ M_{orth}=\left[\begin{array}{cccc}
 \end{array}\right]
 =
 \left[\begin{array}{cccc}
-\frac{2}{|l-r|} &amp; 0 &amp; 0 &amp; -\frac{r+l}{2} \\
-0 &amp; \frac{2}{|b-t|}&amp; 0 &amp; -\frac{t+b}{2} \\
-0 &amp; 0 &amp; \frac{2}{|n-f|} &amp; -\frac{n+f}{2} \\
+\frac{2}{l-r} &amp; 0 &amp; 0 &amp; -\frac{r+l}{2} \\
+0 &amp; \frac{2}{b-t}&amp; 0 &amp; -\frac{t+b}{2} \\
+0 &amp; 0 &amp; \frac{2}{n-f} &amp; -\frac{n+f}{2} \\
 0 &amp; 0 &amp; 0 &amp; 1
 \end{array}\right]
 \]</span> 3.投影变换矩阵</p>
@@ -461,9 +461,9 @@ class="math inline">\(M_{per} = M_{orhto}M_{persp \to -ortho}\)</span>
 <span class="math display">\[
 M_{per} =
 \left[\begin{array}{cccc}
-\frac{2n}{|l-r|} &amp; 0 &amp; -\frac{l+r}{|l-r|} &amp; 0 \\
-0 &amp; \frac{2n}{|b-t|}&amp; -\frac{b+t}{b-t} &amp; 0 \\
-0 &amp; 0 &amp; \frac{n+f}{|n-f|} &amp; -\frac{2nf}{|n-f|} \\
+\frac{2n}{l-r} &amp; 0 &amp; -\frac{l+r}{l-r} &amp; 0 \\
+0 &amp; \frac{2n}{b-t}&amp; -\frac{b+t}{b-t} &amp; 0 \\
+0 &amp; 0 &amp; \frac{n+f}{n-f} &amp; -\frac{2nf}{n-f} \\
 0 &amp; 0 &amp; 1 &amp; 0
 \end{array}\right]
 \]</span></p>
@@ -600,9 +600,9 @@ target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/144323332">计
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/36949/" title="Graph/相机内外参数">
+                      <a href="/posts/63805/" title="相机参数">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Graph/相机内外参数</span>
+                        <span class="hidden-mobile">相机参数</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
