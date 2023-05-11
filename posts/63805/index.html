@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://seulqxq.top/img/index/4.jpg">
 <meta property="article:published_time" content="2023-05-07T07:52:30.000Z">
-<meta property="article:modified_time" content="2023-05-11T09:34:07.475Z">
+<meta property="article:modified_time" content="2023-05-11T09:35:03.746Z">
 <meta property="article:author" content="SeulQxQ">
 <meta property="article:tag" content="图形学">
 <meta name="twitter:card" content="summary_large_image">
@@ -229,7 +229,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.3k 字
+          2.6k 字
         
       </span>
     
@@ -240,7 +240,7 @@
         
         
         
-          20 分钟
+          22 分钟
         
       </span>
     
@@ -368,7 +368,26 @@ class="math inline">\(P_c\)</span>变换为<span
 class="math inline">\(P_w\)</span>: <span class="math display">\[
 P_c = RP_w + t
 \]</span>
-其中<code>R</code>是一个3×3的旋转矩阵，<code>t</code>是3×1的平移向量，一下为齐次坐标形式</p>
+其中<code>R</code>是一个3×3的旋转矩阵，<code>t</code>是3×1的平移向量，一下为齐次坐标形式：
+<span class="math display">\[
+\left[\begin{array}{c}
+X_{c} \\
+Y_{c} \\
+Z_{c}
+\end{array}\right]=\left[\begin{array}{lll}
+R_{11} &amp; R_{12} &amp; R_{13} \\
+R_{21} &amp; R_{22} &amp; R_{23} \\
+R_{31} &amp; R_{32} &amp; R_{33}
+\end{array}\right]\left[\begin{array}{l}
+X_{w} \\
+Y_{w} \\
+Z_{w}
+\end{array}\right]+\left[\begin{array}{l}
+t_{1} \\
+t_{2} \\
+t_{3}
+\end{array}\right]
+\]</span></p>
 <p>将旋转矩阵<code>R</code>和平移向量<code>t</code>带入： <span
 class="math display">\[
 \left[\begin{array}{c}
