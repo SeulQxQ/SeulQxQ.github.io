@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>每周总结(23.08.07-23.08.13)</title>
+    <link href="/posts/8519/"/>
+    <url>/posts/8519/</url>
+    
+    <content type="html"><![CDATA[<div align="center"><H3>Weekly report</div><p><strong>Date:2023.08.07-2023.08.13</strong></p><h4 id="paper">1.Paper</h4><p><strong>Title:</strong><code>Shape, Pose, and Appearance from a Single Image via Bootstrapped Radiance Field Inversion</code></p><p><strong>Summary:</strong></p><p>​ This paper presents a new method for reconstructing the shape, pose,and appearance of an object from a single image. The approach leveragesrecent advances in NeRF representations and frames the problem as a3D-aware GAN inversion task. The process is accelerated by learning anencoder that provides a first guess of the solution and incorporates aprincipled pose estimation technique. The method achievesstate-of-the-art performance on both synthetic and real benchmarks andis shown to be efficient and effective on small datasets. In the future,the authors hope to scale the method to higher resolutions and improvethe reconstructed surface quality by leveraging semi-supervision onextra views or shape priors. They also hope to explore ways toautomatically infer the pose distribution from the data.</p><p><strong>Framework:</strong></p><p>​ The overall framework of this paper is an end-to-end reconstructionframework for reconstructing 3D scenes from a single 2D image. Theframework includes the following steps:</p><blockquote><ol type="1"><li>Generating 3D scenes using NeRF representation.</li><li>Converting 3D scenes to 2D images using GAN inversion.</li><li>Accelerating the reconstruction process using a hybrid inversionmethod.</li><li>Estimating the 3D pose of the object using a deep learning-basedpose estimation technique.</li><li>Providing the first guess of the solution using an encoder.</li></ol></blockquote><p><strong>NeRF representation and GAN inversion:</strong></p><ol type="1"><li>Firstly, an unconditional generator G based on NeRF representationis trained in combination with a 2D image discriminator, following theliterature on 3D-aware GANs. This framework requires minimalassumptions, namely 2D images and the corresponding posedistribution.</li></ol><figure><img src="1.png?100*100" alt="NeRF representation" /><figcaption aria-hidden="true">NeRF representation</figcaption></figure><ol start="2" type="1"><li>Then, the generator G is frozen and an image encoder E is trained tojointly estimate the pose of the object as well as an initial guess ofits latent code (bootstrapping). For pose estimation, a principledapproach is adopted that predicts a canonical map in screen spacefollowed by a Perspective-n-Point (PnP) algorithm for estimation.</li></ol><figure><img src="2.png?100*100" alt="GAN inversion" /><figcaption aria-hidden="true">GAN inversion</figcaption></figure><ol start="3" type="1"><li>Finally, NeRF representation is used to generate 3D scenes.Specifically, the generator G and the encoder E are used to generate 3Dscenes, and a hybrid inversion method is used to convert the 3D scenesto 2D images.</li></ol><figure><img src="3.png?100*100" alt="hybrid inversion" /><figcaption aria-hidden="true">hybrid inversion</figcaption></figure><p><strong>Hybrid inversion:</strong></p><p>​ The encoder E and the generator G are used to generate 3D scenes,which are then converted to 2D images using the hybrid inversionmethod.</p><p>​ The hybrid inversion method consists of two steps: the first stepinvolves generating 3D scenes using the encoder E and the generator G,which the second step involves iteratively optimizing the 3D scenerepresentation using an optimization algorithm to obtain a more accuraterepresentation.</p><p>​ This iterative optimization method can be implemented usingbackpropagation and can be seamlessly integrated with the GAN framework.By using the hybrid inversion method, this paper is able to acceleratethe reconstruction process without sacrificing reconstructionquality.</p><h4 id="code">2. Code</h4><p>​ The code from this paper has been fully implemented; however, due tothe requirement of a minimum of 160GB GPU memory in their environment, Ihad to adjust the batch size to 8 (originally 32) to successfully trainthe model. I plan to test the trained model next week and explore thepossibility of training an even larger model afterward.</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>工作总结</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Summary</title>
     <link href="/posts/39277/"/>
     <url>/posts/39277/</url>
