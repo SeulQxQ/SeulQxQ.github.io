@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>每周总结(23.08.14-23.08.20)</title>
+    <link href="/posts/22085/"/>
+    <url>/posts/22085/</url>
+    
+    <content type="html"><![CDATA[<div align="center"><H3>Weekly report</div><p><strong>Date: 23.08.14-23.08.20</strong></p><h4 id="paper">1.Paper</h4><p><strong>Title:</strong><code>Pix2NeRF: Unsupervised Conditional π-GAN for Single Image to Neural Radiance Fields Translation</code></p><p><strong>Summary:</strong></p><p>​ Pix2NeRF consists of two main components: a generative model and areconstruction objective. The generative model uses a combination of agenerative adversarial network (GAN) and an autoencoder to encode inputimages into vector representations in latent space and generatehigh-quality 3D-aware images. The reconstruction objective uses acombination of reconstruction error and MSE supervision to penalize thegenerator and learn a "canonical" 3D space. These two componentstogether form the Pix2NeRF method for generating Neural Radiance Fields(NeRF) based on a single input image. Overall, Pix2NeRF is an excitingnew approach to generating high-quality 3D-aware images and has thepotential to be used in a wide range of applications.</p><p><strong>Framework:</strong></p><p>​ The framework of the paper consists of two parts: a generative modeland a reconstruction objective. The generative model uses a combinationof a generative adversarial network (GAN) and an autoencoder to encodeinput images into vector representations in latent space and generatehigh-quality 3D-aware images. The reconstruction objective uses acombination of reconstruction error and MSE supervision to penalize thegenerator G and learn a "canonical" 3D space. These two componentstogether form the Pix2NeRF method for generating Neural Radiance Fields(NeRF) based on a single input image.</p><p><strong>Generative mode and Reconstruction objective: </strong></p><p>​ The generative model uses a combination of a generative adversarialnetwork (GAN) and an autoencoder. The goal of the GAN is to train thegenerator G and discriminator D to generate high-quality 3D-awareimages. The goal of the autoencoder is to encode input images intovector representations in latent space, which can be used for imagereconstruction or generating new viewpoints. We use the π-GAN objectiveto optimize the training of the generator G and discriminator D, toimprove the 3D consistency of the generated images. Specifically, thegenerator G is trained to "fool" the discriminator D by progressivelygenerating realistic images. The generator G and discriminator D aretrained together to generate high-quality 3D-aware images.</p><p>​ The reconstruction objective uses a combination of reconstructionerror and MSE supervision to penalize the generator G and learn a"canonical" 3D space. The reconstruction error refers to the differencebetween the generated 3D-aware image and the ground truth image. The MSEsupervision penalizes the generator G if the image pose recovered by thediscriminator does not correspond to the sampled pose. This helps tolearn a "canonical" 3D space, especially when the pose distribution ofreal data is noisy. These two components together form the Pix2NeRFmethod for generating Neural Radiance Fields (NeRF) based on a singleinput image.</p><p><strong>The steps of Pix2NeRF:</strong></p><blockquote><ol type="1"><li>Extract 2D features from a single input image.</li><li>Encode the 2D features into vector representations in latent spaceusing a combination of a generative adversarial network (GAN) and anautoencoder.</li><li>Sample random vectors from the latent space and use the generator togenerate 3D-aware images.</li><li>Penalize the generator using a combination of reconstruction errorand MSE supervision to learn a "canonical" 3D space.</li><li>Repeat steps 3 and 4 until the difference between the generated3D-aware image and the ground truth image is minimized.</li><li>Use the generated NeRF model to generate new viewpoints orreconstruct the input image.</li></ol></blockquote><p>In summary, the steps of Pix2NeRF are: extract 2D features, encodeinto vector representations in latent space, generate 3D-aware images,learn a "canonical" 3D space, and generate new viewpoints or reconstructthe input image.</p><h4 id="code">2.Code</h4><p>​ I tested the trained model of 'Shape, Pose, and Appearance from aSingle Image via Bootstrapped Radiance Field Inversion' and trained anlarger model(batch size is 16). Built the environment of this paper.</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>工作总结</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>每周总结(23.08.07-23.08.13)</title>
     <link href="/posts/8519/"/>
     <url>/posts/8519/</url>
