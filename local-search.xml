@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>23.08.28-23.09.03</title>
+    <link href="/posts/36354/"/>
+    <url>/posts/36354/</url>
+    
+    <content type="html"><![CDATA[<div align="center"><H3>Weekly report</div><p><strong>Date: 23.08.28-23.09.03</strong></p><h4 id="paper">1.Paper</h4><p><strong>Title:</strong><code>Efficient Geometry-aware 3D Generative Adversarial Networks</code></p><p>​这篇论文介绍了一种高效的几何感知3D生成对抗网络（GANs）方法，该方法可以使用单视角2D照片集合生成高质量的多视角一致图像和3D形状。该方法采用了混合显式-隐式网络架构，可以实现实时合成高分辨率的多视角一致图像和高质量的3D几何形状。该方法还提出了双重歧视和生成器姿势调节来减少表情扭曲，提高多视角一致性。作者在ShapeNet和CelebA数据集上进行了实验，结果表明该方法在多视角一致性和3D形状质量方面优于现有方法，并且可以合成具有逼真面部表情和姿势的高质量图像。此外，作者还讨论了该方法的一些局限性和可能的改进方向。</p><p><strong>Framework:</strong></p><p><img src="C:\Users\25385\AppData\Roaming\Typora\typora-user-images\image-20230903155457394.png" alt="image-20230903155457394" style="zoom: 50%;" /></p><p>​设计了一种新的混合显式隐式3D感知网络，该网络使用内存高效的三平面表示显式地将特征存储在由轻量级隐式特征解码器聚合的轴对齐平面上，以实现高效的体绘制。（还没看完，代码跑通了）</p><p><strong>Title:</strong><code>Shape, Pose, and Appearance from a Single Image via Bootstrapped Radiance Field Inversion</code></p><p>​这篇论文介绍了一种从单一图像中重建对象的形状、姿态和外观的新方法。该方法利用了近期在NeRF表示方面的进展，并将问题构建为一个3D感知的GAN反演任务。通过学习一个编码器来加速这个过程，编码器提供了解决方案的初步猜测，并包括了一个有原则的姿态估计技术。该方法在合成和真实基准测试中都达到了最先进的性能，并且在小数据集上表现出了高效和有效的特点。在未来，作者希望将这种方法扩展到更高的分辨率，并通过利用额外视图或形状先验的半监督来改进重建表面质量。他们还希望探索从数据中自动推断姿态分布的方法。</p><p><strong>Framework:</strong></p><p><img src="C:\Users\25385\Desktop\微信图片_20230903153815.jpg" alt="微信图片_20230903153815" style="zoom:80%;" /></p><p>​对论文的框架进行分析，作者使用EG3D中提出的的三平面表示方法设计了一个无条件生成器预训练模型，提高渲染速度的同时保证了图像的分辨率。同时论文中使用3DGAN反演的方法来进行迭代优化，将反演出来的图像与真实图像进行损失计算，从而对模型进行调整。并且对生成的图像和真实图像做了图像增强处理，加快收敛。因为模型中使用了PnP(Perspective-n-point)方法用于从2D图像中估计物体姿态，这种设计虽然能够获得较为准确的物体姿态，但是会导致训练的速度很慢，同时还要求及其高的GPU缓存。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>工作总结</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>总结</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>每周总结(23.08.14-23.08.20)</title>
     <link href="/posts/22085/"/>
     <url>/posts/22085/</url>
@@ -17,6 +42,12 @@
       
     </categories>
     
+    
+    <tags>
+      
+      <tag>总结</tag>
+      
+    </tags>
     
   </entry>
   
@@ -37,6 +68,12 @@
     </categories>
     
     
+    <tags>
+      
+      <tag>总结</tag>
+      
+    </tags>
+    
   </entry>
   
   
@@ -55,6 +92,12 @@
       
     </categories>
     
+    
+    <tags>
+      
+      <tag>总结</tag>
+      
+    </tags>
     
   </entry>
   
@@ -100,6 +143,12 @@
     </categories>
     
     
+    <tags>
+      
+      <tag>总结</tag>
+      
+    </tags>
+    
   </entry>
   
   
@@ -143,6 +192,12 @@
       
     </categories>
     
+    
+    <tags>
+      
+      <tag>总结</tag>
+      
+    </tags>
     
   </entry>
   
