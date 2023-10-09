@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>Shape, Pose, and Appearance from a Single Image via Bootstrapped Radiance Field Inversion</title>
+    <link href="/posts/7366/"/>
+    <url>/posts/7366/</url>
+    
+    <content type="html"><![CDATA[<h4id="shape-pose-and-appearance-from-a-single-image-via-bootstrapped-radiance-field-inversion">Shape,Pose, and Appearance from a Single Image via Bootstrapped Radiance FieldInversion</h4><h5 id="一提出的方法与贡献">一、提出的方法与贡献</h5><p><strong>1.方法：</strong></p><p>​作者提出了一种新的方法，将无条件生成模型与混合反演范式相结合，从单个图像中恢复三维信息。具体来说，他们使用神经辐射场（NeRF）来表示三维场景，并使用编码器产生潜在表示和姿态的第一个猜测。然后，他们通过优化来细化这些初始估计，以获得更准确的重建。</p><p><strong>2.贡献：</strong></p><ul><li>引入了一个基于NeRF的端到端单视图三维重建管道。在这种情况下，我们成功地展示了CMR基准下自然图像的<spanclass="math inline">\(360^◦\)</span>对象重建。</li><li>提出了一种用于NeRF的混合反演方案，以加快预训练的3D感知生成器的反转。</li><li>受姿态估计文献的启发，我们提出了一种基于PnP的姿态估计器，它利用我们的框架并且不需要额外的数据假设。</li></ul><h5 id="二模型与模块">二、模型与模块</h5><p><strong>1. Unconditional generatorpre-training（无条件生成器预训练框架）</strong></p><figure><img src="Shape/image-20230904201413230.png"alt="image-20230904201413230" /><figcaption aria-hidden="true">image-20230904201413230</figcaption></figure><p><code>思想：</code>主要思想来自EG3D的主干网络，三平面编码。<code>该部分被框架使用基于NeRF的生成器G与2D图像鉴别器相结合。</code></p><p><code>模块：</code>StyleGAN2，SDF representation，Attention-basedcolor mapping，Path Length Regularization revisited。</p><blockquote><p>StyleGAN2：生成模型，SDF representation：3D表示，</p><p><strong>Attention-based color mapping：提高颜色泛化性, Path LengthRegularizationrevisited：使三平面解码器不正则化，提高学习率。</strong></p></blockquote><p><strong>2. Bootstrapping and poseestimation（自举和姿态估计）</strong></p><figure><img src="Shape/image-20230904201324234.png"alt="image-20230904201324234" /><figcaption aria-hidden="true">image-20230904201324234</figcaption></figure><p><code>思想：</code>主要思想来自NOCS，<code>改进：是使用从无条件生成器生成的数据来训练编码器而不是手工数据。</code></p><p><code>实现：</code>1）冻结G并训练图像编码器E，联合估计对象的姿势及其潜在代码（自举）的初始猜测。2）对于姿态估计，我们采用了一种原则性的方法来预测屏幕空间中的规范映射通过透视n点(PnP)算法。<code>输入真实图像，将预测的规范映射转换为点云，并运行PnP求解器来恢复所有姿态参数(视图矩阵和焦距)。</code></p><p><code>模块：</code>SegFormer</p><blockquote><p><strong>训练SegFormer网络来从RGB图像中预测规范图和latent codew</strong></p></blockquote><p><strong>SegFormer分割网络图：</strong></p><figure><img src="Shape/image-20230904201508184.png"alt="image-20230904201508184" /><figcaption aria-hidden="true">image-20230904201508184</figcaption></figure><p><strong>3. Reconstruction via hybrid GANinversion（通过混合GAN反演重建）</strong></p><figure><img src="Shape/image-20230904202404525.png"alt="image-20230904202404525" /><figcaption aria-hidden="true">image-20230904202404525</figcaption></figure><p>通过基于梯度的优化(混合反演)改进了几个步骤的姿态和潜在代码。损失函数：VGG</p><p><code>模块：</code>adaptive discriminator augmentation(ADA)</p><blockquote><p>有助于减少梯度的方差，使我们能够进一步提高学习率。</p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>论文笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>NeRF</tag>
+      
+      <tag>论文笔记</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>每周总结(23.09.18-23.09.24)</title>
     <link href="/posts/51013/"/>
     <url>/posts/51013/</url>
@@ -372,9 +399,9 @@
     
     <tags>
       
-      <tag>NeRF</tag>
-      
       <tag>图形学</tag>
+      
+      <tag>NeRF</tag>
       
     </tags>
     
