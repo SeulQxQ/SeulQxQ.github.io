@@ -56,6 +56,31 @@
   
   
   <entry>
+    <title>TensoRF - Tensorial Radiance Fields</title>
+    <link href="/posts/32257/"/>
+    <url>/posts/32257/</url>
+    
+    <content type="html"><![CDATA[<h3 id="tensorf-tensorial-radiance-fields">TensoRF: Tensorial RadianceFields</h3><p><strong>Overview</strong></p><p><img src="image-20231213140258227.png" alt="image-20231213140258227" style="zoom:80%;" /></p><p><strong>张量分解</strong></p><p><img src="image-20231213142555951.png" alt="image-20231213142555951" style="zoom:80%;" /></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>论文笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>NeRF</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>算法训练之 -- 双指针</title>
     <link href="/posts/3463/"/>
     <url>/posts/3463/</url>
