@@ -8,7 +8,7 @@
     <link href="/posts/41203/"/>
     <url>/posts/41203/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<h4 id="training_loop">1 training_loop</h4><ol type="1"><li>torch.backends.cudnn.benchmark = cudnn_benchmark</li></ol>]]></content>
     
     
     <categories>
