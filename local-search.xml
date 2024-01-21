@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>每周总结 -- 对未来说你好，与过去说再见</title>
+    <link href="/posts/22207/"/>
+    <url>/posts/22207/</url>
+    
+    <content type="html"><![CDATA[<div align = "center"><H3>总结 &amp; 反思</div><p><strong>时间：2024.1.15-2024.1.21</strong></p><p>  一周又过去了，这周回家了，然后就也没有学啥东西，也没有发生什么特别的事情，平平无奇的一周叭。这周还是照样每天刷了力扣，并且成功的将力扣刷到100题了，继续加油，刷到250题指日可待💪！论文看了一篇还是两篇去了，这周没有记录都给忘了，看了一篇叫<em>What You See is What You GAN: Rendering Every Pixel forHigh-Fidelity Geometry in 3DGANs</em>的论文，想法是挺不错的，但是没有开源，可惜了~，继续加油找新的的模块吧。然后就是实验结果跑出来了，训练时间少了接近一天，而且最后的<code>FID</code> 结果差不多，算是一个进步吧，接下来需要去看<code>patch-wise GAN</code>的代码了，再进行两到三个改进，不掉点的话，基本就成了！</p><p>  回来之后呢，都快被我教练气死了😡，浪费我差不多5天时间，早知道就晚点回来练车了，哭死😭。回来之后，可能是还没有适应吧，感觉空落落的，好像少了点什么，可能是因为回来的那天晚上又看见学妹了吧，哈哈哈，然后前几个月的记忆突然涌上心头，导致又伤心了一会。好在是我的亲戚请问吃了几顿饭，还喝了好久就想喝的茶颜了，感情上的伤就用食物来弥补叭~，哈哈哈哈。这个寒假要好好安排了呀，不仅要练车，更重要的是把小论文给写出来，三月份就要截稿了，珍惜这最后的机会了，说不定发了小论文之后还能补发一个专利呢，要是能再发一个专利，可就赚大发了！最后就是找实习的事情，寒假要开始计划如何学习音视频知识了，先把C++大类需要学的知识过一下，然后再去精钻音视频方向的知识，同时还能再补充一点后台的知识，任务艰巨哇，还有好多好多好多东西需要去学习，希望能够在下个学期顺利找到一个满意的实习，这样的话离你理想的生活又近了一步哟~，好好加油呢！Fighting！！！💪</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>每周回顾</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>总结&amp;反思</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>算法训练之 -- 移除链表元素</title>
     <link href="/posts/52563/"/>
     <url>/posts/52563/</url>
@@ -233,7 +258,7 @@
     <link href="/posts/64309/"/>
     <url>/posts/64309/</url>
     
-    <content type="html"><![CDATA[<h4 id="表格-1-carla数据集-fid-对比">表格 1： CARLA数据集 FID 对比</h4><table><thead><tr class="header"><th style="text-align: center;">改进方法</th><th style="text-align: center;">图像大小：32*32</th><th style="text-align: center;">图像大小：64*64</th><th style="text-align: center;">图像大小：128*128</th><th style="text-align: center;">图像大小：256*256</th></tr></thead><tbody><tr class="odd"><td style="text-align: center;">原始 pi-GAN</td><td style="text-align: center;">67.0546</td><td style="text-align: center;">28.2993</td><td style="text-align: center;">22.5844</td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr></tbody></table><h4 id="表格-2celeba数据集-fid-对比">表格 2：CelebA数据集 FID 对比</h4><table><thead><tr class="header"><th style="text-align: center;">改进方法</th><th style="text-align: center;">图像大小：32*32</th><th style="text-align: center;">图像大小：64*64</th><th style="text-align: center;">图像大小：128*128</th><th style="text-align: center;">图像大小：256*256</th></tr></thead><tbody><tr class="odd"><td style="text-align: center;">原始 pi-GAN</td><td style="text-align: center;">46.0439</td><td style="text-align: center;">23.4342</td><td style="text-align: center;">25.2026(24.7541)</td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr></tbody></table><h3 id="baseline">1 Baseline</h3><p>baseline为 <code>pi-gan</code></p><h4 id="celeba-数据集">1. CelebA 数据集</h4><figure><img src="image-20240115120840481.png" alt="image-20240115120840481" /><figcaption aria-hidden="true">image-20240115120840481</figcaption></figure><p>​ <img src="image-20240115120944197.png"alt="image-20240115120944197" /><img src="image-20240115120953692.png"alt="image-20240115120953692" /></p><h4 id="carla数据集">2. CARLA数据集</h4><figure><img src="image-20240115121226447.png" alt="image-20240115121226447" /><figcaption aria-hidden="true">image-20240115121226447</figcaption></figure><p>​ <img src="image-20240115121238748.png" /><imgsrc="image-20240115121259569.png" alt="2" /></p><h3 id="改进一">2 改进一：</h3>]]></content>
+    <content type="html"><![CDATA[<h4 id="表格-1-carla数据集-fid-对比">表格 1： CARLA数据集 FID 对比</h4><table><thead><tr class="header"><th style="text-align: center;">改进方法</th><th style="text-align: center;">图像大小：32*32</th><th style="text-align: center;">图像大小：64*64</th><th style="text-align: center;">图像大小：128*128</th><th style="text-align: center;">图像大小：256*256</th><th>所用时间</th></tr></thead><tbody><tr class="odd"><td style="text-align: center;">原始 pi-GAN</td><td style="text-align: center;">67.0546</td><td style="text-align: center;">28.2993</td><td style="text-align: center;">22.5844(22.5183)</td><td style="text-align: center;"></td><td>6d 16h 40m 45s</td></tr><tr class="even"><td style="text-align: center;">生成器采用渐进式</td><td style="text-align: center;">65.8039</td><td style="text-align: center;">26.9490</td><td style="text-align: center;">23.5520(22.5516)</td><td style="text-align: center;"></td><td>5d 17h 08m 41s</td></tr><tr class="odd"><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td></td></tr><tr class="even"><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td></td></tr></tbody></table><h4 id="表格-2celeba数据集-fid-对比">表格 2：CelebA数据集 FID 对比</h4><table><thead><tr class="header"><th style="text-align: center;">改进方法</th><th style="text-align: center;">图像大小：32*32</th><th style="text-align: center;">图像大小：64*64</th><th style="text-align: center;">图像大小：128*128</th><th style="text-align: center;">图像大小：256*256</th></tr></thead><tbody><tr class="odd"><td style="text-align: center;">原始 pi-GAN</td><td style="text-align: center;">46.0439</td><td style="text-align: center;">23.4342</td><td style="text-align: center;">25.2026(24.7541)</td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr><tr class="odd"><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr><tr class="even"><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td><td style="text-align: center;"></td></tr></tbody></table><h3 id="baseline">1 Baseline</h3><p>baseline为 <code>pi-gan</code></p><h4 id="celeba-数据集">1. CelebA 数据集</h4><figure><img src="image-20240115120840481.png" alt="image-20240115120840481" /><figcaption aria-hidden="true">image-20240115120840481</figcaption></figure><p>​ <img src="image-20240115120944197.png"alt="image-20240115120944197" /><img src="image-20240115120953692.png"alt="image-20240115120953692" /></p><h4 id="carla数据集">2. CARLA数据集</h4><figure><img src="image-20240115121226447.png" alt="image-20240115121226447" /><figcaption aria-hidden="true">image-20240115121226447</figcaption></figure><p>​ <img src="image-20240115121238748.png" /><imgsrc="image-20240115121259569.png" alt="2" /></p><h3 id="改进一">2 改进一：</h3>]]></content>
     
     
     <categories>
@@ -258,7 +283,7 @@
     <link href="/posts/20173/"/>
     <url>/posts/20173/</url>
     
-    <content type="html"><![CDATA[<div align="center"><H3>3D感知单视图图像合成</div><h3 id="abstract">Abstract</h3><ol type="1"><li>与基于体素的表示相比，辐射场不限于 3D空间的粗略离散化，但允许在重建歧义存在的情况下优雅地降级相机和场景属性。</li><li>然而，现有的方法要么产生低图像分辨率，要么在解开相机和场景属性方面不足，例如，对象身份可能会因视点而异。</li></ol><h3 id="introduction">1 Introduction</h3><h3 id="related-work">2 Related Work</h3><h4 id="a.-2d-gans">A. 2D GANs</h4><h4 id="b.-3d-aware-gans">B. 3D-Aware GANs</h4><h4 id="c.-neural-radiance-representations">C. Neural RadianceRepresentations</h4><h3 id="methods">3 Methods</h3><h4 id="a.">A.</h4><h4 id="b.">B.</h4><h4 id="c.">C.</h4><h3 id="experiments-and-results">4 Experiments and Results</h3><h4 id="a.-1">A.</h4><h4 id="b.-1">B.</h4><h4 id="c.-1">C.</h4><h3 id="conclutions">5 Conclutions</h3><h3 id="references">References</h3><h3 id="idea">Idea</h3><ol type="1"><li>生成器也采用增长型架构</li></ol>]]></content>
+    <content type="html"><![CDATA[<div align="center"><H3>3D感知单视图图像合成</div><h3 id="abstract">Abstract</h3><ol type="1"><li>与基于体素的表示相比，辐射场不限于 3D空间的粗略离散化，但允许在重建歧义存在的情况下优雅地降级相机和场景属性。</li><li>然而，现有的方法要么产生低图像分辨率，要么在解开相机和场景属性方面不足，例如，对象身份可能会因视点而异。</li></ol><h3 id="introduction">1 Introduction</h3><h3 id="related-work">2 Related Work</h3><h4 id="a.-neural-radiance-representations">A. Neural RadianceRepresentations</h4><h4 id="b.-3d-aware-image-synthesis">B. 3D-Aware Image Synthesis</h4><h4 id="c.">C.</h4><h3 id="methods">3 Methods</h3><h4 id="a.">A.</h4><h4 id="b.">B.</h4><h4 id="c.-1">C.</h4><h3 id="experiments-and-results">4 Experiments and Results</h3><h4 id="a.-1">A.</h4><h4 id="b.-1">B.</h4><h4 id="c.-2">C.</h4><h3 id="conclutions">5 Conclutions</h3><h3 id="references">References</h3><h3 id="idea">Idea</h3><ol type="1"><li>生成器也采用增长型架构</li></ol>]]></content>
     
     
     <categories>
